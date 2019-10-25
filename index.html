@@ -23,7 +23,7 @@
 
   </div>
 
-  <!-- JSONを作成し、読み込み、中のデータを表示する -->
+  <!-- JSONを作成し、読み込み、中のデータを表示する
   <script>
     var images = [
       {
@@ -70,6 +70,22 @@
 
     }
 
+  </script> -->
+  <script>
+    // ajax通信を設定
+    var ajax = new XMLHttpRequest();
+    ajax.open('GET', 'https://h2o-space.com/htmlbook/images.php');
+    ajax.responseType = 'json';
+    ajax.send(null);
+
+    // ajax通信で受信したデータを処理する
+    ajax.onreadystatechange = function() {
+      if (ajax.readyState === XMLHttpRequest.DONE && ajax.status === 200) {
+        for (var i = 0; i < this.response.length; i++) {
+          alert(this.response[i].path);
+        }
+      }
+    };
   </script>
 </body>
 
