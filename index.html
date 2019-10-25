@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link href="https://fonts.googleapis.com/css?family=Bitter:400,700|Open+Sans+Condensed:300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Bitter:400,700|Open+Sans+Condensed:300&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <title>My Photos</title>
 </head>
+
 <body>
   <header>
     <h1>My photos</h1>
@@ -15,14 +18,11 @@
 
   <div class="container">
     <div id="img_unit">
-      <div class="photo">
-        <img src="img/img01.jpg">
-        <div class="inner"><p>コメント1 <span>nickname</span></p></div>
-      </div>
 
     </div>
+
   </div>
-  
+
   <!-- JSONを作成し、読み込み、中のデータを表示する -->
   <script>
     var images = [
@@ -36,10 +36,31 @@
         "name": "name02",
         "caption": "コメント2"
       }
-
     ];
-
     
+    // 要素を作成する
+    var img;
+    var caption;
+    var div;
+    img = document.createElement('img');
+    //imgの属性を指定する
+    img.setAttribute('src',images[0].path);
+    
+    // <div class=inner><p>caption<span>name</span></p></div>
+    caption = document.createElement('div');
+    caption.className = 'inner';
+    caption.innerHTML = '<p>' +  images[0].caption + '<span>' + images[0].name
+    +'</span></p>';
+
+    div = document.createElement('div');
+    div.className = 'photo';
+    div.appendChild(img);
+    div.appendChild(caption);
+
+    // 要素のオブジェクトを直接指定
+    document.getElementById('img_unit').appendChild(div);
+
   </script>
 </body>
+
 </html>
